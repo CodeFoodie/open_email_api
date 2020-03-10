@@ -1,0 +1,92 @@
+{
+  "name": "open_email_api",
+  "version": "1.0.0",
+  "description": "Send email from anywhere without reinstalling the mailing library",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "babel src -d build",
+    "start": "npm run build && nodemon build/index.js",
+    "test": "nyc --reporter=html --reporter=text mocha --exit --require @babel/register --recursive ./test/",
+    "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test",
+    "serve": "node build/index.js",
+    "heroku-postbuild": "npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeFoodie/open_email_api.git"
+  },
+  "keywords": [
+    "endpoint",
+    "email",
+    "API",
+    "send",
+    "anywhere",
+    "without",
+    "reinstalling",
+    "library"
+  ],
+  "author": "Samson Samuel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodeFoodie/open_email_api/issues"
+  },
+  "homepage": "https://github.com/CodeFoodie/open_email_api#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
+    "babel-eslint": "^9.0.0",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.3",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "mocha": "^5.2.0",
+    "nodemon": "2.0.2",
+    "nyc": "^14.1.1"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^6.5.3",
+    "body-parser": "^1.19.0",
+    "chai-http": "^4.3.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "nodemon": "^2.0.2",
+    "regenerator-runtime": "^0.13.3"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "rules": {
+      "linebreak-style": 0
+    },
+    "env": {
+      "browser": true,
+      "es6": true,
+      "mocha": true
+    }
+  },
+  "nyc": {
+    "_comment": "Purpose of this part: to do code coverage within Mocha/Chai using Istanbul",
+    "register": "babel-register",
+    "include": [
+      "**/*.js",
+      "./*.js"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/coverage/**",
+      "**/ui/**",
+      "**/build/**",
+      "**/src/mid/**"
+    ],
+    "all": true
+  },
+  "engines": {
+    "node": "10.13.0"
+  }
+}
