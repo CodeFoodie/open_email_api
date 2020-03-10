@@ -1,0 +1,9 @@
+version: "2"
+exclude_patterns:
+  - "./.nyc_output/"
+  - "./build/"
+  - "./coverage/"
+  - "./node_modules/"
+  - "./src/utils/emailTemplates/"
+  - "./src/test/"
+  - "./ui/"

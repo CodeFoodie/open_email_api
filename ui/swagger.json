@@ -1,0 +1,114 @@
+{  
+    "swagger":"2.0",
+    "info":{  
+       "description":"This documentation defines API instrumentation for [https://openemailapi.herokuapp.com/].  This For this sample, you can use the api key `special-key` to test the authorization filters.",
+       "version":"1.0.0",
+       "title":"Open_Email_Api",
+       "termsOfService":"http://swagger.io/terms/",
+       "contact":{  
+          "email":"apiteam@swagger.io"
+       },
+       "license":{  
+          "name":"Apache 2.0",
+          "url":"http://www.apache.org/licenses/LICENSE-2.0.html"
+       }
+    },
+    "host":"https://openemailapi.herokuapp.com/",
+    "basePath":"/v1",
+    "tags":[  
+       {  
+          "name":"Handle-feedback",
+          "description":"Use fetch in vanila.JS to send user feedback to help desk",
+          "externalDocs":{  
+             "description":"Find out more",
+             "url":"http://swagger.io"
+          }
+       }
+    ],
+    "schemes":[  
+       "https",
+       "http"
+    ],
+    "paths":{  
+       "/sendmail":{  
+          "post":{  
+             "tags":[  
+                "Handle-feedback"
+             ],
+             "summary":"Feedback payload",
+             "description":"Required payload for sending email",
+             "operationId":"sendmail",
+             "consumes":[  
+                "application/json",
+                "application/xml"
+             ],
+             "produces":[  
+                "application/xml",
+                "application/json"
+             ],
+             "parameters":[  
+                {  
+                   "in":"body",
+                   "name":"body",
+                   "description":"Pet object that needs to be added to the store",
+                   "required":true,
+                   "schema":{  
+                      "$ref":"#/definitions/sendmail"
+                   }
+                }
+             ],
+             "responses":{  
+                "401":{  
+                   "description":"Invalid input"
+                }
+             }
+          }
+       }
+    },
+    "securityDefinitions":{  
+       "petstore_auth":{  
+          "type":"oauth2",
+          "authorizationUrl":"https://petstore.swagger.io/oauth/authorize",
+          "flow":"implicit",
+          "scopes":{  
+             "write:pets":"modify pets in your account",
+             "read:pets":"read your pets"
+          }
+       },
+       "api_key":{  
+          "type":"apiKey",
+          "name":"api_key",
+          "in":"header"
+       }
+    },
+    "definitions":{  
+       "sendmail":{  
+          "type":"object",
+          "properties":{  
+             "receiver":{  
+               "type":"string",
+               "description":"Email of feedback giver"
+            },
+             "subject":{  
+                "type":"string",
+                "description":"Subject of feedback"
+             },
+             "message":{  
+                "type":"string",
+                "description":"Feedback message"
+             },
+             "helpline":{  
+               "type":"string",
+               "description":"Email of appropriate help channel"
+            }
+          },
+          "xml":{  
+             "name":"sendmail"
+          }
+       }
+    },
+    "externalDocs":{  
+       "description":"Find out more about Swagger",
+       "url":"http://swagger.io"
+    }
+ }
