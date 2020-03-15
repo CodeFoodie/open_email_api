@@ -4,8 +4,11 @@
   "description": "Send email from anywhere without reinstalling the mailing library",
   "main": "src/index.js",
   "scripts": {
-    "build": "babel src -d build",
-    "start": "npm run build && nodemon build/index.js",
+    "clean": "rm -rf build && mkdir build",
+    "build-babel": "babel -d ./build ./src -s",
+    "build": "npm run clean && npm run build-babel",
+    "start": "node ./build/index.js",
+    "start:dev": "nodemon build/index.js",
     "test": "nyc --reporter=html --reporter=text mocha --exit --require @babel/register --recursive ./test/",
     "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "serve": "node build/index.js",
@@ -36,7 +39,7 @@
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/register": "^7.4.4",
-    "babel-eslint": "^9.0.0",
+    "babel-eslint": "^8.2.6",
     "chai": "^4.2.0",
     "coveralls": "^3.0.3",
     "eslint": "^6.8.0",
@@ -78,11 +81,11 @@
       "./*.js"
     ],
     "exclude": [
+      "**/.nyc_output/**",
       "**/node_modules/**",
       "**/coverage/**",
       "**/ui/**",
-      "**/build/**",
-      "**/src/mid/**"
+      "**/build/**"
     ],
     "all": true
   },
